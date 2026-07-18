@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  spatio-textual-index:
+    build: .
+    volumes:
+      - ./resources:/app/resources
+    environment:
+      - JAVA_OPTS=-Xmx2g
+    # El comando no es necesario especificarlo aquí, se usa el CMD del Dockerfile

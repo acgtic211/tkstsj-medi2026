@@ -1,0 +1,192 @@
+{
+  "dataset": {
+    "datasetType": "HOTELS",
+    "usagePercentage": 1.0
+  },
+  "index": {
+    "fanout": 25,
+    "fillFactor": 0.7,
+    "dimension": 2,
+    "betaArea": 0.5,
+    "maxWord": 4,
+    "numClusters": 8,
+    "numMoves": 300,
+    "rTreeVariant": "RSTAR",
+    "nearMinimumOverlapFactor": 8,
+    "smoothingFactor": 0.2,
+    "spatialIndexType": "IR",
+    "dataStructureType": "HASHMAP",
+    "textualIndexType": "INVERTED_LIST",
+    "bulkLoadMethod": "NONE"
+  },
+  "query": {
+    "numberOfQueries": 1,
+    "writeResults": false,
+    "groupSizes": [10, 20, 40, 60, 80],
+    "groupSizeDefault": 10,
+    "mPercentages": [40, 50, 60, 70, 80],
+    "mPercentageDefault": 60,
+    "numberOfKeywords": [1, 2, 4, 8, 10],
+    "numberOfKeywordsDefault": 2,
+    "spaceAreaPercentages": [0.001, 0.01, 0.02, 0.03, 0.04, 0.05],
+    "spaceAreaPercentageDefault": 0.01,
+    "keywordSpaceSizePercentages": [1, 2, 3, 4, 5],
+    "keywordSpaceSizePercentageDefault": 3,
+    "topKValues": [100, 200, 500, 700, 1000],
+    "topKDefault": 100,
+    "alphaValues": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "alphaDefault": 0.5,
+    "radiusValues": [1.0, 2.0, 5.0, 10.0, 20.0],
+    "radiusDefault": 10.0,
+    "spatialDistance": [0.001, 0.005, 0.01, 0.05, 0.1],
+    "spatialDistanceDefault": 0.01,
+    "textualSimilarity": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "textualSimilarityDefault": 0.5
+  },
+  "experiment": {
+    "numIterations": 3,
+    "writeQueryResults": false,
+    "runAggregateQueries": false,
+    "runKnnQueries": false,
+    "runRangeQueries": false,
+    "runJoinQueries": true,
+    "joinExperiments": [
+      {
+        "queryTypes": ["TOPK_STSJ_EX"],
+        "algorithm": "BEST_FIRST",
+        "queryStrategy": "FULL_JOIN",
+        "similarityType": "WEIGHTED_JACCARD",
+        "varyParameter": "topK",
+        "fixedNumberOfKeywords": 2,
+        "numberOfQueries": 1,
+        "joinStrategy": "DEFAULT",
+        "thresholdPolicy": "STRICT",
+        "secondaryDataset": {
+          "datasetType": "PARKS",
+          "usagePercentage": 1.0
+        },
+        "secondaryIndex": {
+          "fanout": 25,
+          "fillFactor": 0.7,
+          "dimension": 2,
+          "betaArea": 0.5,
+          "maxWord": 4,
+          "numClusters": 8,
+          "numMoves": 300,
+          "rTreeVariant": "RSTAR",
+          "nearMinimumOverlapFactor": 8,
+          "smoothingFactor": 0.2,
+          "spatialIndexType": "IR",
+          "dataStructureType": "HASHMAP",
+          "textualIndexType": "INVERTED_LIST",
+          "bulkLoadMethod": "NONE"
+        }
+      },
+      {
+        "queryTypes": ["TOPK_STSJ_EX"],
+        "algorithm": "BEST_FIRST",
+        "queryStrategy": "FULL_JOIN",
+        "similarityType": "WEIGHTED_JACCARD",
+        "varyParameter": "topK",
+        "fixedNumberOfKeywords": 2,
+        "numberOfQueries": 1,
+        "joinStrategy": "PLANE_SWEEP",
+        "thresholdPolicy": "STRICT",
+        "secondaryDataset": {
+          "datasetType": "PARKS",
+          "usagePercentage": 1.0
+        },
+        "secondaryIndex": {
+          "fanout": 25,
+          "fillFactor": 0.7,
+          "dimension": 2,
+          "betaArea": 0.5,
+          "maxWord": 4,
+          "numClusters": 8,
+          "numMoves": 300,
+          "rTreeVariant": "RSTAR",
+          "nearMinimumOverlapFactor": 8,
+          "smoothingFactor": 0.2,
+          "spatialIndexType": "IR",
+          "dataStructureType": "HASHMAP",
+          "textualIndexType": "INVERTED_LIST",
+          "bulkLoadMethod": "NONE"
+        }
+      },
+      {
+        "queryTypes": ["TOPK_STSJ_EX"],
+        "algorithm": "RECURSIVE",
+        "queryStrategy": "FULL_JOIN",
+        "similarityType": "WEIGHTED_JACCARD",
+        "varyParameter": "topK",
+        "fixedNumberOfKeywords": 2,
+        "numberOfQueries": 1,
+        "joinStrategy": "DEFAULT",
+        "thresholdPolicy": "STRICT",
+        "secondaryDataset": {
+          "datasetType": "PARKS",
+          "usagePercentage": 1.0
+        },
+        "secondaryIndex": {
+          "fanout": 25,
+          "fillFactor": 0.7,
+          "dimension": 2,
+          "betaArea": 0.5,
+          "maxWord": 4,
+          "numClusters": 8,
+          "numMoves": 300,
+          "rTreeVariant": "RSTAR",
+          "nearMinimumOverlapFactor": 8,
+          "smoothingFactor": 0.2,
+          "spatialIndexType": "IR",
+          "dataStructureType": "HASHMAP",
+          "textualIndexType": "INVERTED_LIST",
+          "bulkLoadMethod": "NONE"
+        }
+      },
+      {
+        "queryTypes": ["TOPK_STSJ_EX"],
+        "algorithm": "RECURSIVE",
+        "queryStrategy": "FULL_JOIN",
+        "similarityType": "WEIGHTED_JACCARD",
+        "varyParameter": "topK",
+        "fixedNumberOfKeywords": 2,
+        "numberOfQueries": 1,
+        "joinStrategy": "PLANE_SWEEP",
+        "thresholdPolicy": "STRICT",
+        "secondaryDataset": {
+          "datasetType": "PARKS",
+          "usagePercentage": 1.0
+        },
+        "secondaryIndex": {
+          "fanout": 25,
+          "fillFactor": 0.7,
+          "dimension": 2,
+          "betaArea": 0.5,
+          "maxWord": 4,
+          "numClusters": 8,
+          "numMoves": 300,
+          "rTreeVariant": "RSTAR",
+          "nearMinimumOverlapFactor": 8,
+          "smoothingFactor": 0.2,
+          "spatialIndexType": "IR",
+          "dataStructureType": "HASHMAP",
+          "textualIndexType": "INVERTED_LIST",
+          "bulkLoadMethod": "NONE"
+        }
+      }
+    ]
+  },
+  "paths": {
+    "temp": "src/main/resources/temp/",
+    "results": "src/main/resources/results/",
+    "metrics": "src/main/resources/results/metrics/",
+    "log": "src/main/resources/log/"
+  },
+  "csvFormat": {
+    "separator": ";",
+    "decimalSymbol": ",",
+    "includeHeaders": true,
+    "writeGnuplotMetadata": false
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "dataset": {
+    "datasetType": "SPORTS",
+    "usagePercentage": 1.0,
+    "samplingMethod": "RANDOMIZED",
+    "samplingRandomSeed": 42,
+    "samplingStartLine": 0
+  },
+  "index": {
+    "fanout": 25,
+    "fillFactor": 0.7,
+    "dimension": 2,
+    "betaArea": 0.5,
+    "maxWord": 4,
+    "numClusters": 8,
+    "numMoves": 300,
+    "rTreeVariant": "RSTAR",
+    "nearMinimumOverlapFactor": 8,
+    "smoothingFactor": 0.2,
+    "spatialIndexType": "CDIR",
+    "dataStructureType": "HASHMAP",
+    "textualIndexType": "INVERTED_LIST",
+    "bulkLoadMethod": "NONE"
+  },
+  "query": {
+    "numberOfQueries": 20,
+    "writeResults": false,
+    "groupSizes": [10, 20, 40, 60, 80],
+    "groupSizeDefault": 10,
+    "mPercentages": [40, 50, 60, 70, 80],
+    "mPercentageDefault": 60,
+    "numberOfKeywords": [1, 2, 4, 8, 10],
+    "numberOfKeywordsDefault": 2,
+    "spaceAreaPercentages": [0.001, 0.01, 0.02, 0.03, 0.04, 0.05],
+    "spaceAreaPercentageDefault": 0.01,
+    "keywordSpaceSizePercentages": [1, 2, 3, 4, 5],
+    "keywordSpaceSizePercentageDefault": 3,
+    "topKValues": [1, 10, 20, 30, 40, 50],
+    "topKDefault": 10,
+    "alphaValues": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "alphaDefault": 0.5,
+    "radiusValues": [1.0, 2.0, 5.0, 10.0, 20.0],
+    "radiusDefault": 10.0,
+    "spatialDistance": [0.001, 0.005, 0.01, 0.05, 0.1],
+    "spatialDistanceDefault": 0.01,
+    "textualSimilarity": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "textualSimilarityDefault": 0.5
+  },
+  "experiment": {
+    "numIterations": 5,
+    "writeQueryResults": false,
+    "runAggregateQueries": true,
+    "runKnnQueries": true,
+    "runRangeQueries": true,
+    "runJoinQueries": false,
+    "aggregateExperiments": [
+      {
+        "aggregateFunctions": ["SUM"],
+        "queryTypes": ["GNNK", "SGNNK"],
+        "varyParameter": "numberOfKeywords",
+        "fixedAlpha": 0.5,
+        "overrideNumberOfQueries": 1
+      },
+      {
+        "aggregateFunctions": ["SUM"],
+        "queryTypes": ["GNNK", "SGNNK"],
+        "varyParameter": "groupSize",
+        "fixedAlpha": 0.5,
+        "overrideNumberOfQueries": 1
+      },
+      {
+        "aggregateFunctions": ["SUM"],
+        "queryTypes": ["GNNK", "SGNNK"],
+        "varyParameter": "alpha",
+        "fixedAlpha": 0.5,
+        "overrideNumberOfQueries": 1
+      }
+    ],
+    "knnExperiments": [
+      {
+        "queryTypes": ["BkSK", "TkSK"],
+        "varyParameter": "numberOfKeywords",
+        "fixedAlpha": 0.5
+      },
+      {
+        "queryTypes": ["BkSK", "TkSK"],
+        "varyParameter": "topk",
+        "fixedAlpha": 0.5
+      },
+      {
+        "queryTypes": ["BkSK", "TkSK"],
+        "varyParameter": "alpha"
+      }
+    ],
+    "rangeExperiments": [
+      {
+        "queryTypes": ["BRSK"],
+        "varyParameter": "numberOfKeywords",
+        "fixedAlpha": 0.5
+      },
+      {
+        "queryTypes": ["BRSK"],
+        "varyParameter": "radius",
+        "fixedAlpha": 0.5
+      },
+      {
+        "queryTypes": ["BRSK"],
+        "varyParameter": "alpha"
+      }
+    ],
+    "joinExperiments": []
+  },
+  "paths": {
+    "temp": "src/main/resources/temp/",
+    "results": "src/main/resources/results/",
+    "metrics": "src/main/resources/results/metrics/",
+    "log": "src/main/resources/log/"
+  },
+  "csvFormat": {
+    "separator": ";",
+    "decimalSymbol": ",",
+    "includeHeaders": true,
+    "writeGnuplotMetadata": false
+  }
+}
