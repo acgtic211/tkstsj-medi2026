@@ -1,4 +1,4 @@
-# In-Memory Spatial-Keyword Indexing
+# Efficient Processing of Top-k Spatio-Textual Similarity Join with IR-trees in main memory
 ## Quick Start
 
 Run <code>AlternativeMain.java</code> (the current main entry point).
